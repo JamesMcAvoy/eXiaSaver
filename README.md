@@ -24,3 +24,4 @@ Projet C Linux écran de veille
 * réécrire termsaver1/2 de façon à avoir les fonctions en header
 * finir historical.c
 * finir param -stat launcher
+* ajouter writeHist sur termsaver1/2/3
