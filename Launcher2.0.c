@@ -7,46 +7,59 @@
 #include <string.h>
 #define TAILLE_MAX 1000
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
 
 	//Paramètre -stat
-	if(argc == 2) {
-		if(argv[0] = "-stat") {
+	if(argc == 2)
+	{
+		if(argv[0] = "-stat")
+		{
 
-		FILE* fichier = NULL;
-		char chaine[TAILLE_MAX] = "";
-    int a=0;
-    int x = 1;
-    int caractereLu, ligne = 1;
-		char* jour[];
-    printf("( ͡° ͜ʖ ͡°) STATISTIQUES ( ͡° ͜ʖ ͡°)\n\n");
-    printf(" Nous vous proposons 3 modes         \n");
-    printf(" d'affichages :                       \n\n");
-		printf("1. Nombre utilisation par jour\n ");
-		printf("2. Combien de fois est utilisé les différents écran de veille\n");
-		printf("3. Dernier utilisé\n");
+			FILE* fichier = NULL;
+			char chaine[TAILLE_MAX] = "";
+    	int a=0;
+    	int x = 1;
+			int ret;
+    	int caractereLu, ligne = 1;
+			char* jour[];
+    	printf("( ͡° ͜ʖ ͡°) STATISTIQUES ( ͡° ͜ʖ ͡°)\n\n");
+    	printf(" Nous vous proposons 3 modes         \n");
+    	printf(" d'affichages :                       \n\n");
+			printf("1. Nombre utilisation par jour\n ");
+			printf("2. Combien de fois est utilisé les différents écran de veille\n");
+			printf("3. Dernier utilisé\n");
 
 
-		while ((a!=1)||(a!=2)||(a!=3)){
-			fichier = fopen("histo.txt", "r+");
+			while ((a!=1)||(a!=2)||(a!=3))
+			{
+				fichier = fopen("histo.txt", "r+");
 
-				{
+
 				printf("Quel type d'affichage voulez-vous ?\n");
 				scanf("%d", &a);
 
-				if (a ==1){
+				if (a ==1)
+				{
 						fichier = fopen("histo.txt", "r");
-						jour = fgets(chaine, 10, fichier);
-						end of line
-
-
+						ret = strcmp (caractereLu, jour[])
+						while (ret == 0)
+						{
+							caractereLu = fgets(chaine, 10, fichier);
+							while (jour !=EOF){
+								jour[x] = caractereLu
+							}
+							while (x!=TAILLE_MAX)
+							{
+								printf("%c",tab[n]); //test
+								x++;
+							}
 						}
 				}
-
-				}
-
+	 		}
+   }
 	}
-
+}
 	pid_t fils;
 
     srand(time(NULL));
