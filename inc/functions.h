@@ -13,7 +13,7 @@ struct Screensaver {
 };
 
 struct Static {
-	char *file[50];
+	char file[50];
 };
 
 struct Dynamic {
