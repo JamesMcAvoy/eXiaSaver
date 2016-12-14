@@ -51,19 +51,16 @@ int main(int argc, char *argv[]) {
 /* ========================================================
 ==================== AFFICHAGE FICHIER ====================
 ======================================================== */
+/* CREE UN PROCESSUS FILS */
 pid_t fils;
 int father;
-
 fils = fork();
 father = getppid();
+
+/* AFFICHE L'IMAGE */
 if(fils == 0)
-{
-  displayPBM(fichier, size, width, height, tableau);
-}
-else
-{
-    father = wait(NULL);
-}
+{displayPBM(fichier, size, width, height, tableau);} // AFFICHE L'IMAGE
+else {father = wait(NULL);}
 
 
 /* =========================================================
