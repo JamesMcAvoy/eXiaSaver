@@ -3,13 +3,28 @@
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
-#include "../Fonctions/clear.h"
+//#include "../Fonctions/statique.h"
+
+
+void centerX(int width, const char* str) {
+  for (int a=0; a<((80-(width*2-1))/2); a++) {
+    putchar(' ');
+  }
+  printf("%s", str);
+}
+
+void centerY(int height) {
+  for (int b=0; b<((23-height)/2); b++) {
+    putchar('\n');
+  }
+}
+
 
 int main(int argc, char *argv[]) {
 /* ============================================
 ==================== CLEAR ====================
 ============================================ */
-  term_clear(); // EFFACE LE TERMINAL
+  system("clear"); // EFFACE LE TERMINAL
 
 
 /* ================================================
@@ -21,9 +36,7 @@ int main(int argc, char *argv[]) {
   char c;
   char chaine[10];
 
-  int test = 0;
-  int dimension[2];
-
+  fichier = NULL;
   int width = 0;
   int height = 0;
   int size = 0;
@@ -44,9 +57,7 @@ int main(int argc, char *argv[]) {
 ===================================================== */
   if (fichier != NULL) { // SI L'IMAGE EST BIEN RECUE
     fseek (fichier, 8, SEEK_SET); // SKIP LES PREMIERS ELEMENTS POUR ALLER A L'IMAGE 0/1
-    fscanf(fichier, "%d %d", &dimension[0], &dimension[1]);
-    width = dimension[0];
-    height = dimension[1];
+    fscanf(fichier, "%d %d", &width, &height);
     size = 2*width*height;
     tableau = malloc(size * sizeof(char));
 
@@ -54,17 +65,14 @@ int main(int argc, char *argv[]) {
 /* ========================================================
 ==================== AFFICHAGE FICHIER ====================
 ======================================================== */
-    do {
-      caractere = fgetc(fichier); // AFFECTE LA LIGNE DANS CHAINE
-      if (caractere == '0') {caractere = ' '; tableau[i] = caractere; i++;} // SI IL Y A UN 0 DANS LE FICHIER PBM -> LE REMPLACER PAR UN ESPACE
-      else if (caractere == ' ') {caractere = ' '; tableau[i] = caractere; i++;} // MET LESPACE DANS LE TABLEAU
-      else if (caractere == '\n') {caractere = '\n'; tableau[i] = caractere; i++;} // MET LE RETOUR A LA LIGNE DANS LE TABLEAU
-      else if (caractere == '1') {caractere = 'X'; tableau[i] = caractere; i++;} // SI IL Y A UN 1 DANS LE FICHIER PBM -> LE REMPLACER PAR UN X
-    } while (caractere != EOF); // LIT JUSQU'A LA FIN DU FICHIER
-
-    for(int j=0; j<size; j++) {
-      printf("%c", tableau[j]);
-
+    centerY(height); // SE PREPARE A AFFICHER L'IMAGE VERTICALEMENT
+    for (int i=0; i<(height+1); i++) { // PARCOURT TOUTES LES LIGNES
+      fgets(tableau, size, fichier); // RENTRE LES CARACTERES DANS LE TABLEAU
+      for (int j=0; j<size; j++) { // PARCOURT TOUTES LES COLONNES
+        if (tableau[j] == '0') {tableau[j] = ' ';} // SI IL Y A UN 0 DANS LE FICHIER PBM -> LE REMPLACER PAR UN ESPACE
+        else if (tableau[j] == '1') {tableau[j] = 'X';} // SI IL Y A UN 1 DANS LE FICHIER PBM -> LE REMPLACER PAR UN X
+      }
+      centerX(width, tableau); // AFFICHE L'IMAGE CENTREE HORIZONTALEMENT
     }
 
     free(tableau);
