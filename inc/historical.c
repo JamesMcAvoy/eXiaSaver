@@ -5,13 +5,18 @@
 #include <unistd.h>
 
 void writeHist(Historical hist) {
-/*
+	
+	system("date +\"%D %X;\" > histo.txt");
+
 	FILE* fichier = NULL;
 	fichier = fopen("historique.txt", "a+");
 	
+	char chaine[5];
+	sprintf(chaine, "%d\n", hist.type);
+	
 	if (fichier != NULL) {
-		system("date +\"%F %T\" > histo.txt");
+		fputs(chaine, fichier);
 		fclose(fichier);
 	}
-*/
+
 }
