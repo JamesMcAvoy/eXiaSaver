@@ -15,8 +15,6 @@ int main(int argc, char **argv) {
 		}
 	}
 
-	pid_t fils;
-
     srand(time(NULL));
 
     int nbgen = (rand() % 3) + 1;
@@ -32,14 +30,9 @@ int main(int argc, char **argv) {
 
     switch(nbgen) {
 	    case 1:
-			fils = fork();
-			father = getppid();
-			if(fils == 0) {
-				strcpy(term, "termsaver1");
-				strcat(path, term);
-				system(path);
-			}
-			else father = wait(NULL);
+			strcpy(term, "termsaver1");
+			strcat(path, term);
+			system(path);
 			break;
 
 		case 2:
