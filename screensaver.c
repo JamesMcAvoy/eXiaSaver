@@ -22,8 +22,8 @@ int main(int argc, char **argv) {
 
     system("clear");
 
-    char path[25];
-    char term[25];
+    char *path;
+    char *term;
 
     //path=~/ExiaSaver/termsaverN
     strcpy(path, getenv("EXIASAVER_HOME"));
