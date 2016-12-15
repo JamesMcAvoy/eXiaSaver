@@ -1,6 +1,10 @@
 # eXiaSaver
 Projet C Linux écran de veille
 
+###curses.h
+apt-get install libncurses-dev
+compiler avec -lncurses
+
 ## Arborescence
 * /home/ (root)
   * .bashrc (contient var env)
@@ -18,8 +22,6 @@ Projet C Linux écran de veille
     * historical.c
 
 ## TODO
-* supprimer Fonctions/
-* supprimer screensaver_dynamique
 * finir termsaver3.c
 * réécrire termsaver1/2 de façon à avoir les fonctions en header
 * finir historical.c
