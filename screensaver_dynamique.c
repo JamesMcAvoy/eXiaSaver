@@ -4,7 +4,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 #define TAILLE_MAX 80
-#define centrer(x,y) printf("\033[%d;%dH]", (x), (y))
+#define centrer(x,y) printf("\033[%d;%dH", (x), (y))
 
 
 int initialisationHeure()
@@ -13,6 +13,7 @@ int initialisationHeure()
     struct tm instant;
     time(&secondes);
     instant=*localtime(&secondes);
+    //On met les secondes, minutes, heures dans différentes variables
     int timeSeconde1 = (instant.tm_sec)/10;
     int timeSeconde2 = (instant.tm_sec)-(timeSeconde1*10);
     int timeMinute1 = (instant.tm_min)/10;
@@ -20,6 +21,8 @@ int initialisationHeure()
     int timeHeure1 = (instant.tm_hour)/10;
     int timeHeure2 = (instant.tm_hour)-(timeHeure1*10);
 
+
+    //On met les secondes, minutes, heures dans un tableau
     int Heure[8];
     Heure[0] = timeHeure1;
     Heure[1] = timeHeure2;
@@ -40,6 +43,7 @@ int initialisationHeure()
     int chaine2[2];
     int a,b;
 
+    //Boucle pour récuperer les images PBM correspondant à chaque chiffre de l'heure
     for (z = 0; z < 8; z++)
     {
         switch(Heure[z])
@@ -118,6 +122,7 @@ int initialisationHeure()
 
 int main()
 {
+    //Variable pour le rafraichissement des images et le centrage de l'image
     int rafraichissement = 10;
     int ctrlc = 0;
     int i;
@@ -133,21 +138,23 @@ int main()
         initialisationHeure();
         centrer(a,b);
 
+        //Texte afficher pour indiquer comment l'heure ce rafraichis
         if(rafraichissement == 1)
         {
             centrer(a,b+10);
-            printf("L'ecran sera actualisé toute les secondes\n");
+            printf("L'ecran est actualise toute les secondes\n");
         }
         else
         {
             printf("L'ecran sera actualisé dans quelques secondes");
         }
 
+        //Boucle pour rafraichir l'heure
         for(i = 0; i < rafraichissement; i++)
         {
             sleep(1);
             centrer(x,y);
-            printf(". \n");
+            printf(".\n");
             y++;
         }
 
