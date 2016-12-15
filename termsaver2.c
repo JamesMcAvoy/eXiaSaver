@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include "fonctions.h"
+#include "inc/fonctions.h"
 #define centrer(x,y) printf("\033[%d;%dH", (x), (y))
 #define TAILLE_MAX 80
 
