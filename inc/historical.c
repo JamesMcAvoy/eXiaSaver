@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
+#include "historical.h"
 
 void writeHist(Historical hist) {
 	
