@@ -12,7 +12,7 @@ void writeHist(Historical hist) {
 	FILE* fichier = NULL;
 	fichier = fopen("historique.txt", "a+");
 	
-	char chaine[5];
+	char *chaine;
 	sprintf(chaine, "%d\n", hist.type);
 	
 	if (fichier != NULL) {
