@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
 
     srand(time(NULL));
 
-    int nbgen = (rand() % 3) + 1;
+    int nbgen = (rand() % 2) + 1;
     int father;
 
     system("clear");
@@ -29,7 +29,7 @@ int main(int argc, char **argv) {
     strcpy(path, getenv("EXIASAVER_HOME"));
 
     switch(nbgen) {
-	    case 1:
+		case 1:
 			strcpy(term, "termsaver1");
 			strcat(path, term);
 			system(path);
@@ -40,12 +40,6 @@ int main(int argc, char **argv) {
 			strcat(path, term);
 			system(path);
 			break;
-
-		case 3:
-			strcpy(term, "termsaver3");
-			strcat(path, term);
-		    system(path);
-		    break;
 	}
 
 	return 0;
