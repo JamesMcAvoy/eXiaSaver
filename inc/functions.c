@@ -129,34 +129,34 @@ void initialisationHeure()
         switch(Heure[z])
         {
             case 0 :
-                fichier = fopen("../PBM2/chiffre_0.pbm", "r");
+                fichier = fopen("../PBM/chiffre0.pbm", "r");
             break;
             case 1 :
-                fichier = fopen("../PBM2/chiffre_1.pbm", "r");
+                fichier = fopen("../PBM/chiffre1.pbm", "r");
             break;
             case 2 :
-                fichier = fopen("../PBM2/chiffre_2.pbm", "r");
+                fichier = fopen("../PBM/chiffre2.pbm", "r");
             break;
             case 3 :
-                fichier = fopen("../PBM2/chiffre_3.pbm", "r");
+                fichier = fopen("../PBM/chiffre3.pbm", "r");
             break;
             case 4 :
-                fichier = fopen("../PBM2/chiffre_4.pbm", "r");
+                fichier = fopen("../PBM/chiffre4.pbm", "r");
             break;
             case 5 :
-                fichier = fopen("../PBM2/chiffre_5.pbm", "r");
+                fichier = fopen("../PBM/chiffre5.pbm", "r");
             break;
             case 6 :
-                fichier = fopen("../PBM2/chiffre_6.pbm", "r");
+                fichier = fopen("../PBM/chiffre6.pbm", "r");
             break;
             case 7 :
-                fichier = fopen("../PBM2/chiffre_7.pbm", "r");
+                fichier = fopen("../PBM/chiffre7.pbm", "r");
             break;
             case 8 :
-                fichier = fopen("../PBM2/chiffre_8.pbm", "r");
+                fichier = fopen("../PBM/chiffre8.pbm", "r");
             break;
             case 9 :
-                fichier = fopen("../PBM2/chiffre_9.pbm", "r");
+                fichier = fopen("../PBM/chiffre9.pbm", "r");
             break;
             case 25 :
                 fichier = fopen("../PBM2/separateur.pbm", "r");
