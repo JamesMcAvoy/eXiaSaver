@@ -2,7 +2,7 @@
 Projet C Linux écran de veille
 
 ###curses.h
-apt-get install libncurses-dev
+apt-get install libncurses-dev<br />
 compiler avec -lncurses
 
 ## Arborescence
