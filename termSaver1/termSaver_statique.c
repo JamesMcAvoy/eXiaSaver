@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
   //getenv("EXIASAVER1_PBM");
   //const char *EXIASAVER2_PBM;
   //const char *EXIASAVER3_PBM;
-  strcpy(EXIASAVER1_PBM, getenv("EXIASAVER1_PBM"));
+  strcpy(EXIASAVER1_PBM, "/PBM");
   char chaine[50];
 
 
