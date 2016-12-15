@@ -1,88 +1,165 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<unistd.h>
-#include<time.h>
-#include"fonction.h"
-#define largeur_console 80
+#include <time.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
+#define TAILLE_MAX 80
+#define centrer(x,y) printf("\033[%d;%dH", (x), (y))
 
-/* Fonction */
-int compteur()
-{   while(1)
+
+int initialisationHeure()
+{
+    time_t secondes;
+    struct tm instant;
+    time(&secondes);
+    instant=*localtime(&secondes);
+    //On met les secondes, minutes, heures dans différentes variables
+    int timeSeconde1 = (instant.tm_sec)/10;
+    int timeSeconde2 = (instant.tm_sec)-(timeSeconde1*10);
+    int timeMinute1 = (instant.tm_min)/10;
+    int timeMinute2 = (instant.tm_min)-(timeMinute1*10);
+    int timeHeure1 = (instant.tm_hour)/10;
+    int timeHeure2 = (instant.tm_hour)-(timeHeure1*10);
+
+
+    //On met les secondes, minutes, heures dans un tableau
+    int Heure[8];
+    Heure[0] = timeHeure1;
+    Heure[1] = timeHeure2;
+    Heure[2] = 25;
+    Heure[3] = timeMinute1;
+    Heure[4] = timeMinute2;
+    Heure[5] = 25;
+    Heure[6] = timeSeconde1;
+    Heure[7] = timeSeconde2;
+
+    int z = 0;
+    int tailleFichier = 1;
+
+    int y=40-((4+tailleFichier*2)*3+5), x = 6;
+    int i = 0, j = 0; //Variable pour les boucles
+    FILE* fichier = NULL; //On met le pointeur à null
+    char chaine[TAILLE_MAX];
+    int chaine2[2];
+    int a,b;
+
+    //Boucle pour récuperer les images PBM correspondant à chaque chiffre de l'heure
+    for (z = 0; z < 8; z++)
     {
-        system("cls");
-        int valeur = 0;
-        recuparationHeure();
-        printf_center("L'heure va s'actualiser dans quelques secondes :");
-        while(valeur < 10)
+        switch(Heure[z])
         {
-            printf(".", valeur);
-            valeur ++;
-            my_delay(1);
+            case 0 :
+                fichier = fopen("PBM/chiffre0.pbm", "r");
+            break;
+            case 1 :
+                fichier = fopen("PBM/chiffre1.pbm", "r");
+            break;
+            case 2 :
+                fichier = fopen("PBM/chiffre2.pbm", "r");
+            break;
+            case 3 :
+                fichier = fopen("PBM/chiffre3.pbm", "r");
+            break;
+            case 4 :
+                fichier = fopen("PBM/chiffre4.pbm", "r");
+            break;
+            case 5 :
+                fichier = fopen("PBM/chiffre5.pbm", "r");
+            break;
+            case 6 :
+                fichier = fopen("PBM/chiffre6.pbm", "r");
+            break;
+            case 7 :
+                fichier = fopen("PBM/chiffre7.pbm", "r");
+            break;
+            case 8 :
+                fichier = fopen("PBM/chiffre8.pbm", "r");
+            break;
+            case 9 :
+                fichier = fopen("PBM/chiffre9.pbm", "r");
+            break;
+            case 25 :
+                fichier = fopen("PBM/separateur.pbm", "r");
+            break;
+
         }
+
+        if(fichier != NULL)//On vérifie si le fichier est ouvert
+        {
+            fseek(fichier, 3, SEEK_SET);
+            fscanf(fichier, "%d %d", &chaine2[0], &chaine2[1]);
+            a = chaine2[0];
+            b = chaine2[1];
+            a = (a*2)-1;
+
+            fseek(fichier, 1, SEEK_CUR);
+
+            for(i = 0; i < b; i++)//boucle qui parcourt la ligne
+            {
+                centrer(x,y);
+                fgets(chaine, TAILLE_MAX, fichier); //Récupération d'une ligne dans le fichier pbm
+
+                for(j = 0; j < a; j++) //boucle qui parcourt la ligne
+                {
+                    centrer(x,y);
+                    if(chaine[j] == '0')
+                        chaine[j] = ' ';//On remplace les 0 par  des espaces
+                    else if(chaine[j] == '1')
+                        chaine[j] = 'X';//On change les 1 par des X
+
+                }
+                x = x + 1;
+                printf("%s", chaine);
+            }
+            fclose(fichier);//On ferme le fichier
+            fichier = NULL;
+        }
+        x = x - 5;
+        y = y + 7;
     }
-
-
-
 }
 
 
-int recuparationHeure()
+int main()
 {
-    /*int heure;
-    int minute;*/
+    //Variable pour le rafraichissement des images et le centrage de l'image
+    int rafraichissement = 10;
+    int ctrlc = 0;
+    int i;
+    int a = 20; int b = 15, c = 3, d = 25;
+    system("clear");
 
-    // On lit l'heure courante
-    time_t now = time(NULL);
-
-    //On la convertit en heure local
-    struct tm tm_now = *localtime(&now);
-
-    //On créer une chaine HH:MM
-    char s_heure[sizeof "HH"];
-    char s_minute[sizeof "MM"];
-
-    //strftime(s_now, sizeof s_now, "%H:%M", &tm_now);
-
-    strftime(s_heure, sizeof s_heure, "%H", &tm_now);
-    strftime(s_minute, sizeof s_minute, "%M", &tm_now);
-
-    printf("%s :", s_heure);
-    printf(" %s\n", s_minute);
-
-
-    //On affiche le résultat
-    //printf("%s\n", s_now);
-
-}
-
-
-void my_delay(int i) //fonction pour faire une pause de x seconde
-{
-    clock_t start,end;
-    start=clock();
-    while(((end=clock())-start)<=i*CLOCKS_PER_SEC);
-}
-
-//fonction pour centre les images
-void printf_center(const char* str)
-{
-    unsigned int n;
-    for(n = 0; n < (largeur_console-strlen(str)) / 2; n++)
+    while(ctrlc != 1)
     {
-        putchar(' ');
+        int x = 20;
+        int y = 62;
+
+        centrer(c,d);
+        initialisationHeure();
+        centrer(a,b);
+
+        //Texte afficher pour indiquer comment l'heure ce rafraichis
+        if(rafraichissement == 1)
+        {
+            centrer(a,b+10);
+            printf("L'ecran est actualise toute les secondes\n");
+        }
+        else
+        {
+            printf("L'ecran sera actualisé dans quelques secondes");
+        }
+
+        //Boucle pour rafraichir l'heure
+        for(i = 0; i < rafraichissement; i++)
+        {
+            sleep(1);
+            centrer(x,y);
+            printf(".\n");
+            y++;
+        }
+
+        y = y - rafraichissement;
+        centrer(x,y);
+        printf("                              ");
     }
-    printf("%s", str);
 }
-
-
-int main(int argc, char *argv[])
-{
-    compteur();
-
-
-}
-
-
-
-
-
