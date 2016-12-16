@@ -4,7 +4,8 @@
 #include <wait.h>
 #include <string.h>
 
-#include "/inc/fonctions.h"
+#include "inc/fonctions.h"
+#include "inc/historical.h"
 
 
 int main(int argc, char *argv[]) {
@@ -26,11 +27,10 @@ int main(int argc, char *argv[]) {
   int MAX = 5; // Numéro de l'image le plus haut
   int nombreAleatoire;
   //const char *EXIASAVER_HOME;
-  char EXIASAVER1_PBM[50];
-  //getenv("EXIASAVER1_PBM");
+  char EXIASAVER1_PBM[20];
   //const char *EXIASAVER2_PBM;
   //const char *EXIASAVER3_PBM;
-  strcpy(EXIASAVER1_PBM, "/PBM");
+  strcpy(EXIASAVER1_PBM, "PBM1");
   char chaine[50];
 
 
@@ -65,7 +65,18 @@ int main(int argc, char *argv[]) {
       getchar(); // Attend que l'utilisateur appuie sur une touche
       system("stty cooked echo"); // Permet de fermer le programme sans appuyer sur ENTRER
     }
-    else {father = wait(NULL); system("clear"); return EXIT_SUCCESS;} // Permet de retourner dans le processus père à la fin du programme
+    else {
+      father = wait(NULL);
+      system("clear");
+
+      Historical hist;
+
+      *hist.file = "histo.txt";
+      hist.type =1;
+
+      writeHist(hist);
+
+      return EXIT_SUCCESS;} // Permet de retourner dans le processus père à la fin du programme
 
   }
 
