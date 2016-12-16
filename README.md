@@ -22,8 +22,4 @@ compiler avec -lncurses
     * historical.c
 
 ## TODO
-* finir termsaver3.c
-* réécrire termsaver1/2 de façon à avoir les fonctions en header
-* finir historical.c
-* finir param -stat launcher
-* ajouter writeHist sur termsaver1/2/3
+* termsaver3.c
