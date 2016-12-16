@@ -4,6 +4,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include "inc/fonctions.h"
+#include "inc/historical.h"
 #define centrer(x,y) printf("\033[%d;%dH", (x), (y))
 #define TAILLE_MAX 80
 
@@ -50,5 +51,14 @@ int main(int argc, char *argv[])
         centrer(x,y);
         printf("                              ");
     }
+
     system("clear");
+
+    Historical hist;
+
+    *hist.file = "histo.txt";
+    hist.type =2;
+
+    writeHist(hist);
+    return 0;
 }
