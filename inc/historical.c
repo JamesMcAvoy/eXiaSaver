@@ -6,18 +6,10 @@
 #include "historical.h"
 
 void writeHist(Historical hist) {
-	
-	system("date +\"%D %X;\" > histo.txt");
 
-	FILE* fichier = NULL;
-	fichier = fopen("historique.txt", "a+");
-	
-	char *chaine;
-	sprintf(chaine, "%d\n", hist.type);
-	
-	if (fichier != NULL) {
-		fputs(chaine, fichier);
-		fclose(fichier);
-	}
+  if(hist.type == 1)
+  	system("date +\"%D %X;1\" >> histo.txt");
+  else if(hist.type == 2)
+  	system("date +\"%D %X;2\" >> histo.txt");
 
 }
