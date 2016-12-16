@@ -11,7 +11,6 @@ compiler avec -lncurses
   * screensaver.c (screensaver, launcher)
   * termsaver1.c (termsaver1, 1er écran veille)
   * termsaver2.c (termsaver2, 2e  écran veille)
-  * termsaver3.c (termsaver3, 3e  écran veille)
   * histo.txt (fichier historique)
   * PBM/ (dossier contenant fichiers PBM)
     * ...
@@ -20,6 +19,3 @@ compiler avec -lncurses
     * functions.c
     * historical.h
     * historical.c
-
-## TODO
-* termsaver3.c
